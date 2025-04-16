@@ -5,6 +5,7 @@
 //  Created by 신병기 on 4/16/25.
 //
 
+import Foundation
 import ComposableArchitecture
 
 public struct AuthReducer: Reducer {
@@ -21,6 +22,7 @@ public struct AuthReducer: Reducer {
     }
 
     @Dependency(\.googleSignInClient) var googleSignInClient
+    @Dependency(\.userFirestoreClient) var userFirestoreClient
 
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
@@ -30,6 +32,15 @@ public struct AuthReducer: Reducer {
                 return .run { send in
                     do {
                         let user = try await googleSignInClient.signIn()
+                        
+                        let appUser = AppUser(
+                            uid: user.uid,
+                            email: user.email,
+                            nickname: "", // 추후 닉네임 설정 시 업데이트
+                            joinedAt: Date()
+                        )
+                        try await userFirestoreClient.createIfNeeded(appUser)
+                        
                         await send(.signInResult(.success(user)))
                     } catch let error as SignInError {
                         await send(.signInResult(.failure(error)))

@@ -49,10 +49,6 @@ extension GoogleSignInClient {
     }
 }
 
-private enum GoogleSignInClientKey: DependencyKey {
-    static let liveValue = GoogleSignInClient.live
-}
-
 public enum SignInError: Error, Equatable {
     case missingClientID
     case noPresentingViewController
@@ -63,6 +59,10 @@ public enum SignInError: Error, Equatable {
 public struct User: Equatable {
     public let uid: String
     public let email: String
+}
+
+private enum GoogleSignInClientKey: DependencyKey {
+    static let liveValue = GoogleSignInClient.live
 }
 
 extension DependencyValues {
