@@ -7,6 +7,7 @@
 
 import Foundation
 import ComposableArchitecture
+import FirebaseAuth
 
 public struct AuthReducer: Reducer {
     public struct State: Equatable {
@@ -33,11 +34,12 @@ public struct AuthReducer: Reducer {
                     do {
                         let user = try await googleSignInClient.signIn()
                         
+                        let joinedAt = Auth.auth().currentUser?.metadata.creationDate ?? Date()
                         let appUser = AppUser(
                             uid: user.uid,
                             email: user.email,
                             nickname: "", // 추후 닉네임 설정 시 업데이트
-                            joinedAt: Date()
+                            joinedAt: joinedAt
                         )
                         try await userFirestoreClient.createIfNeeded(appUser)
                         
