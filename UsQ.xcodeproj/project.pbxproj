@@ -12,6 +12,7 @@
 		10B76E4F2DAE602B0084581C /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 10B76E4E2DAE602B0084581C /* FirebaseCore */; };
 		10B76E552DAEB18C0084581C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 10B76E542DAEB18C0084581C /* FirebaseAnalytics */; };
 		10B76E572DAEB18C0084581C /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 10B76E562DAEB18C0084581C /* FirebaseCrashlytics */; };
+		10B76E6D2DAF703F0084581C /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 10B76E6C2DAF703F0084581C /* GoogleSignIn */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +38,22 @@
 		10B76E022DAE5DC60084581C /* UsQUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UsQUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		10B76E9B2DAF7D450084581C /* Exceptions for "UsQ" folder in "UsQ" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = 10B76DE72DAE5DC40084581C /* UsQ */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		10B76DEA2DAE5DC40084581C /* UsQ */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				10B76E9B2DAF7D450084581C /* Exceptions for "UsQ" folder in "UsQ" target */,
+			);
 			path = UsQ;
 			sourceTree = "<group>";
 		};
@@ -65,6 +79,7 @@
 				10B76E572DAEB18C0084581C /* FirebaseCrashlytics in Frameworks */,
 				10B76E552DAEB18C0084581C /* FirebaseAnalytics in Frameworks */,
 				10B76E4D2DAE602B0084581C /* FirebaseAuth in Frameworks */,
+				10B76E6D2DAF703F0084581C /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +145,7 @@
 				10B76E4E2DAE602B0084581C /* FirebaseCore */,
 				10B76E542DAEB18C0084581C /* FirebaseAnalytics */,
 				10B76E562DAEB18C0084581C /* FirebaseCrashlytics */,
+				10B76E6C2DAF703F0084581C /* GoogleSignIn */,
 			);
 			productName = UsQ;
 			productReference = 10B76DE82DAE5DC40084581C /* UsQ.app */;
@@ -216,6 +232,7 @@
 			packageReferences = (
 				10B76E242DAE5E9F0084581C /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				10B76E4B2DAE602B0084581C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				10B76E6B2DAF703F0084581C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 10B76DE92DAE5DC40084581C /* Products */;
@@ -421,6 +438,7 @@
 				DEVELOPMENT_TEAM = MVS5FW87FX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UsQ/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -450,6 +468,7 @@
 				DEVELOPMENT_TEAM = MVS5FW87FX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UsQ/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -598,6 +617,14 @@
 				minimumVersion = 11.11.0;
 			};
 		};
+		10B76E6B2DAF703F0084581C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -625,6 +652,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 10B76E4B2DAE602B0084581C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
+		};
+		10B76E6C2DAF703F0084581C /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 10B76E6B2DAF703F0084581C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
