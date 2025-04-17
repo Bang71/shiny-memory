@@ -15,6 +15,7 @@ public struct AuthReducer {
         public var user: User?
         public var isLoading: Bool = false
         public var errorMessage: String?
+        public var didLogin: Bool = false
         public init() {}
     }
 
@@ -56,6 +57,7 @@ public struct AuthReducer {
                 state.user = user
                 state.isLoading = false
                 state.errorMessage = nil
+                state.didLogin = true
                 return .none
 
             case let .signInResult(.failure(error)):

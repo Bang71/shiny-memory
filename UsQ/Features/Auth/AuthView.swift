@@ -16,39 +16,51 @@ public struct AuthView: View {
     }
 
     public var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack(spacing: 24) {
-                Spacer()
+        NavigationStack {
+            WithViewStore(self.store, observe: { $0 }) { viewStore in
+                VStack(spacing: 24) {
+                    Spacer()
 
-                Text("Welcome to UsQ")
-                    .font(.largeTitle)
-                    .bold()
+                    Text("Welcome to UsQ")
+                        .font(.largeTitle)
+                        .bold()
 
-                Button(action: {
-                    viewStore.send(.signInWithGoogleTapped)
-                }) {
-                    Text("Sign in with Google")
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
+                    Button(action: {
+                        viewStore.send(.signInWithGoogleTapped)
+                    }) {
+                        Text("Sign in with Google")
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+
+                    if viewStore.isLoading {
+                        ProgressView()
+                    }
+
+                    if let error = viewStore.errorMessage {
+                        Text(error)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+
+                    Spacer()
                 }
-
-                if viewStore.isLoading {
-                    ProgressView()
+                .padding()
+                .navigationDestination(isPresented: .constant(viewStore.didLogin)) {
+                    GroupCreationView(
+                        store: Store(
+                            initialState: GroupCreationReducer.State(),
+                            reducer: {
+                                GroupCreationReducer()
+                            }
+                        )
+                    )
                 }
-
-                if let error = viewStore.errorMessage {
-                    Text(error)
-                        .foregroundColor(.red)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                }
-
-                Spacer()
             }
-            .padding()
         }
     }
 }
