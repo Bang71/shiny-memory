@@ -9,9 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 public struct AuthView: View {
-    let store: Store<AuthReducer.State, AuthReducer.Action>
+    let store: StoreOf<AuthReducer>
 
-    public init(store: Store<AuthReducer.State, AuthReducer.Action>) {
+    public init(store: StoreOf<AuthReducer>) {
         self.store = store
     }
 

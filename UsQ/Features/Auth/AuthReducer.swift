@@ -9,7 +9,8 @@ import Foundation
 import ComposableArchitecture
 import FirebaseAuth
 
-public struct AuthReducer: Reducer {
+@Reducer
+public struct AuthReducer {
     public struct State: Equatable {
         public var user: User?
         public var isLoading: Bool = false
