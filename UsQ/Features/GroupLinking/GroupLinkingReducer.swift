@@ -28,15 +28,15 @@ public struct GroupLinkingReducer {
         case completeJoiningTapped(userId: String)
         case joinedSuccessfully
     }
-
-    @Dependency(\.groupFirestoreClient) var groupFirestoreClient
-    @Dependency(\.membershipFirestoreClient) var membershipFirestoreClient
-
+    
     public enum GroupLinkingError: Error, Equatable {
         case notFound
         case expired
         case firebase(String)
     }
+
+    @Dependency(\.groupFirestoreClient) var groupFirestoreClient
+    @Dependency(\.membershipFirestoreClient) var membershipFirestoreClient
 
     public var body: some ReducerOf<Self> {
         Reduce { state, action in

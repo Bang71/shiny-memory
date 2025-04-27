@@ -12,6 +12,7 @@ import FirebaseFirestore
 public struct MembershipFirestoreClient {
     public var joinGroup: (_ userId: String, _ groupId: String) async throws -> Void
     public var isAlreadyJoined: (_ userId: String, _ groupId: String) async throws -> Bool
+    public var fetchMembers: (_ groupId: String) async throws -> [Membership]
 }
 
 extension MembershipFirestoreClient {
@@ -28,6 +29,16 @@ extension MembershipFirestoreClient {
             let membershipId = "\(userId)_\(groupId)"
             let doc = try await db.collection("memberships").document(membershipId).getDocument()
             return doc.exists
+        },
+        fetchMembers: { groupId in
+            let db = Firestore.firestore()
+            let snapshot = try await db.collection("memberships")
+                .whereField("groupId", isEqualTo: groupId)
+                .getDocuments()
+
+            return try snapshot.documents.compactMap { document in
+                try document.data(as: Membership.self)
+            }
         }
     )
 }

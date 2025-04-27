@@ -75,7 +75,16 @@ public struct GroupCreationView: View {
                 }
                 .padding()
                 .navigationDestination(isPresented: .constant(viewStore.didCreateGroup)) {
-                    Text("그룹 홈 화면으로 이동") // TODO: Replace with actual destination view
+                    if let group = viewStore.createdGroup {
+                        GroupHomeView(
+                            store: Store(
+                                initialState: GroupHomeReducer.State(group: group),
+                                reducer: {
+                                    GroupHomeReducer()
+                                }
+                            )
+                        )
+                    }
                 }
             }
         }

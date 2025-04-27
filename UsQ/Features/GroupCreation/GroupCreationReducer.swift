@@ -1,3 +1,10 @@
+//
+//  GroupCreationReducer.swift
+//  UsQ
+//
+//  Created by 신병기 on 4/17/25.
+//
+
 import Foundation
 import ComposableArchitecture
 import FirebaseFirestore
